@@ -15,7 +15,7 @@ public class MecanumTest extends OpModeEx {
     // Variables (Declaration):
     public Mecanum mecanum_drive;
 
-    // Constructor:
+    // Initialization:
     @Override
     public void initInternal() {
         mecanum_drive = new Mecanum(hardwareMap);

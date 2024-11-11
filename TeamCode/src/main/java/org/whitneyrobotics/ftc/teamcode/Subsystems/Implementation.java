@@ -5,6 +5,7 @@ package org.whitneyrobotics.ftc.teamcode.Subsystems;
 
 // Imports:
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Mecanum.Mecanum;
+import org.whitneyrobotics.ftc.teamcode.Subsystems.Intake.Intake;
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Information;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -16,10 +17,13 @@ public class Implementation {
 
     // Subsystems:
     public Mecanum mecanum_drive;
+    public Intake intake;
 
     // Constructor:
     private Implementation(HardwareMap hardware_map) {
+        // Variables (Definition):
         mecanum_drive = new Mecanum(hardware_map);
+        intake = new Intake(hardware_map);
     }
 
     private Implementation() {}
@@ -44,6 +48,7 @@ public class Implementation {
     public void update(
         Information information
     ) {
+        // Mecanum:
         mecanum_drive.operate(
             information.gamepad_right_stick_x,
 
