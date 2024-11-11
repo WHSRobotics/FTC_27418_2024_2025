@@ -2,7 +2,6 @@ package org.whitneyrobotics.ftc.teamcode.Subsystems;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.robot.Robot;
 
 import org.whitneyrobotics.ftc.teamcode.Constants.Alliance;
 import org.whitneyrobotics.ftc.teamcode.Roadrunner.drive.IntoTheDeepMecanumDrive;
@@ -10,36 +9,36 @@ import org.whitneyrobotics.ftc.teamcode.Roadrunner.drive.StandardTrackingWheelLo
 
 import java.util.ArrayList;
 
-public class RobotImpl {
+public class RobotImplOld {
 
     public static Pose2d poseMemory = new Pose2d(0, 0, 0);
 
-    private static RobotImpl instance = null;
+    private static RobotImplOld instance = null;
 
     public Alliance alliance = Alliance.RED;
 
-    public RobotImpl() {
+    public RobotImplOld() {
     }
 
-    public static RobotImpl getInstance(){
+    public static RobotImplOld getInstance(){
         return instance;
     }
 
-    public static RobotImpl getInstance(HardwareMap hardwareMap){
+    public static RobotImplOld getInstance(HardwareMap hardwareMap){
         init(hardwareMap);
         return instance;
 
     }
 
     public static void init(HardwareMap hardwareMap) {
-        instance = new RobotImpl(hardwareMap);
+        instance = new RobotImplOld(hardwareMap);
     }
 
     public IntoTheDeepMecanumDrive drive;
 
     public StandardTrackingWheelLocalizer localizer;
 
-    private RobotImpl(HardwareMap hardwareMap) {
+    private RobotImplOld(HardwareMap hardwareMap) {
         drive = new IntoTheDeepMecanumDrive(hardwareMap);
         localizer = new StandardTrackingWheelLocalizer(hardwareMap, new ArrayList<>(), new ArrayList<>());
 
@@ -60,5 +59,4 @@ public class RobotImpl {
     public void update(){
         drive.update();
     }
-
 }
