@@ -58,7 +58,7 @@ public class Mecanum {
         // Variables (Assignment):
         double right_x = gamepad_right_stick_x;
 
-        double left_x = gamepad_left_stick_x * 1.05;
+        double left_x = gamepad_left_stick_x;
         double left_y = -gamepad_left_stick_y;
 
         double greatest_common_factor = calculate_scaling_factor(
