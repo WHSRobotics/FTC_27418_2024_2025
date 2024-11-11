@@ -5,6 +5,7 @@ package org.whitneyrobotics.ftc.teamcode.Subsystems;
 
 // Imports:
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Mecanum.Mecanum;
+import org.whitneyrobotics.ftc.teamcode.Subsystems.Information;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
@@ -41,16 +42,13 @@ public class Implementation {
     }
 
     public void update(
-        double gamepad_right_stick_x,
-
-        double gamepad_left_stick_x,
-        double gamepad_left_stick_y
+        Information information
     ) {
         mecanum_drive.operate(
-            gamepad_right_stick_x,
+            information.gamepad_right_stick_x,
 
-            gamepad_left_stick_x,
-            gamepad_left_stick_y,
+            information.gamepad_left_stick_x,
+            information.gamepad_left_stick_y
         );
     }
 }

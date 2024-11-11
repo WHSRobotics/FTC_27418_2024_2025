@@ -7,6 +7,7 @@ import org.whitneyrobotics.ftc.teamcode.Extensions.OpModeEx.OpModeEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Implementation;
+import org.whitneyrobotics.ftc.teamcode.Subsystems.Information;
 
 
 // Class:
@@ -24,12 +25,16 @@ public class WHSTeleOp extends OpModeEx {
 
     @Override
     public void loopInternal() {
-        // Logic:
-        implementation.update(
+        // Variables (Assignment):
+        Information information = new Information(
+            // Mecanum:
             gamepad1.RIGHT_STICK_X.value(),
 
             gamepad1.LEFT_STICK_X.value(),
             gamepad1.LEFT_STICK_Y.value()
         );
+
+        // Logic:
+        implementation.update(information);
     }
 }
