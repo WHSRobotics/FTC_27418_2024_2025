@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Implementation;
 import org.whitneyrobotics.ftc.teamcode.Subsystems.Information;
+import org.whitneyrobotics.ftc.teamcode.Subsystems.Internals;
 
 
 // Class:
@@ -15,12 +16,14 @@ import org.whitneyrobotics.ftc.teamcode.Subsystems.Information;
 public class WHSTeleOp extends OpModeEx {
     // Variables (Declaration):
     Implementation implementation;
+    Internals internals;
 
     // Initialization:
     @Override
     public void initInternal() {
         // Variables (Definition):
         implementation = Implementation.getInstance(hardwareMap);
+        internals = new Internals();
     }
 
     @Override
