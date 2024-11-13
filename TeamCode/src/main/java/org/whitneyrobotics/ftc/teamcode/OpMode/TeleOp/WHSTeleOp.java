@@ -42,6 +42,17 @@ public class WHSTeleOp extends OpModeEx {
         );
 
         // Alliances:
+        gamepad1.LEFT_STICK_DOWN.onPress(() -> {
+            telemetry.addLine()
+                .addData("previous-alliance", "%s", internals.get_alliance().identifier);
+
+            internals.toggle_alliance();
+
+            telemetry.addLine()
+                    .addData("current-alliance", "%s", internals.get_alliance().identifier);
+
+            telemetry.update();
+        });
 
         // Logic:
         implementation.update(information);
