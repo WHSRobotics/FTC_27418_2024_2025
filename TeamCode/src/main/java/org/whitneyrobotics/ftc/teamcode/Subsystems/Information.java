@@ -12,12 +12,21 @@ public class Information {
     double gamepad_left_stick_x;
     double gamepad_left_stick_y;
 
+    // Intake:
+    double gamepad_two_right_trigger_down;
+    double gamepad_two_left_trigger_down;
+
     // Constructor:
     public Information(
+        // Mecanum:
         double gamepad_right_stick_x,
 
         double gamepad_left_stick_x,
-        double gamepad_left_stick_y
+        double gamepad_left_stick_y,
+
+        // Intake:
+        double gamepad_two_right_trigger_down,
+        double gamepad_two_left_trigger_down
     ) {
         // Variables (Definition):
         // Mecanum:
@@ -25,5 +34,9 @@ public class Information {
 
         this.gamepad_left_stick_x = gamepad_left_stick_x;
         this.gamepad_left_stick_y = gamepad_left_stick_y;
+
+        // Intake:
+        this.gamepad_two_right_trigger_down = gamepad_two_right_trigger_down;
+        this.gamepad_two_left_trigger_down = gamepad_two_left_trigger_down;
     }
 }

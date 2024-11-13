@@ -55,5 +55,11 @@ public class Implementation {
             information.gamepad_left_stick_x,
             information.gamepad_left_stick_y
         );
+
+        // Intake:
+        intake.operate(
+            information.gamepad_two_right_trigger_down,
+            information.gamepad_two_left_trigger_down
+        );
     }
 }
