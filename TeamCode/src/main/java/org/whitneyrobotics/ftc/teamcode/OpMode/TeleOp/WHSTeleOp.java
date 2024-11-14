@@ -24,6 +24,11 @@ public class WHSTeleOp extends OpModeEx {
         // Variables (Definition):
         implementation = Implementation.getInstance(hardwareMap);
         internals = new Internals();
+
+        // Telemetry:
+        telemetry.addLine()
+            .addData("initialization", "%s", "Robot initialized..");
+        telemetry.update();
     }
 
     @Override
@@ -38,7 +43,9 @@ public class WHSTeleOp extends OpModeEx {
 
             // Intake:
             gamepad2.RIGHT_TRIGGER.value(),
-            gamepad2.LEFT_TRIGGER.value()
+            gamepad2.LEFT_TRIGGER.value(),
+
+            gamepad2.SELECT.value()
         );
 
         // Alliances:

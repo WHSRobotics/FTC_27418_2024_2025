@@ -16,6 +16,8 @@ public class Information {
     double gamepad_two_right_trigger_down;
     double gamepad_two_left_trigger_down;
 
+    boolean gamepad_two_select;
+
     // Constructor:
     public Information(
         // Mecanum:
@@ -26,7 +28,9 @@ public class Information {
 
         // Intake:
         double gamepad_two_right_trigger_down,
-        double gamepad_two_left_trigger_down
+        double gamepad_two_left_trigger_down,
+
+        boolean gamepad_two_select
     ) {
         // Variables (Definition):
         // Mecanum:
@@ -38,5 +42,7 @@ public class Information {
         // Intake:
         this.gamepad_two_right_trigger_down = gamepad_two_right_trigger_down;
         this.gamepad_two_left_trigger_down = gamepad_two_left_trigger_down;
+
+        this.gamepad_two_select = gamepad_two_select;
     }
 }

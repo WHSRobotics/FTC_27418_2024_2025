@@ -59,7 +59,9 @@ public class Implementation {
         // Intake:
         intake.operate(
             information.gamepad_two_right_trigger_down,
-            information.gamepad_two_left_trigger_down
+            information.gamepad_two_left_trigger_down,
+
+            information.gamepad_two_select
         );
     }
 }

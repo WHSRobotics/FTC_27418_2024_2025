@@ -33,16 +33,18 @@ public class Intake {
     // Operate:
     public void operate(
         double gamepad_two_right_trigger_down,
-        double gamepad_two_left_trigger_down
+        double gamepad_two_left_trigger_down,
+
+        boolean gamepad_two_select
     ) {
-        if (gamepad_two_right_trigger_down >= 0.5) {
+        if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_select) {
             run_intake(1.0);
 
             return;
         }
 
-        if (gamepad_two_left_trigger_down >= 0.5) {
-            run_intake(0.0);
+        if (gamepad_two_left_trigger_down >= 0.5 && gamepad_two_select) {
+            run_intake(-1.0);
         }
     }
 }
