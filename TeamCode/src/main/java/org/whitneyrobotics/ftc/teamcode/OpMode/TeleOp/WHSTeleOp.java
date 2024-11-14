@@ -35,13 +35,13 @@ public class WHSTeleOp extends OpModeEx {
     public void loopInternal() {
         // Variables (Assignment):
         Information information = new Information(
-            // Mecanum:
+            // Mecanum (Gamepad One):
             gamepad1.RIGHT_STICK_X.value(),
 
             gamepad1.LEFT_STICK_X.value(),
             gamepad1.LEFT_STICK_Y.value(),
 
-            // Intake:
+            // Intake (Gamepad Two):
             gamepad2.RIGHT_TRIGGER.value(),
             gamepad2.LEFT_TRIGGER.value(),
 
