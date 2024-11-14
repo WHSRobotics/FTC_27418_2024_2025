@@ -29,6 +29,10 @@ public class IntakeTest extends OpModeEx {
         });
 
         gamepad1.X.onPress(() -> {
+            intake.run_intake(-1.0);
+        });
+
+        gamepad1.A.onPress(() -> {
             intake.run_intake(0.0);
         });
     }
