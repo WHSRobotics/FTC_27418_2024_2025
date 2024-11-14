@@ -22,6 +22,13 @@ public class Intake {
     // Methods:
     public void run_intake(double power) {
         // Logic:
+        if (power == 0) {
+            run(intake_right, 0);
+            run(intake_left, 0);
+
+            return;
+        }
+
         run(intake_right, -power);
         run(intake_left, power);
     }
