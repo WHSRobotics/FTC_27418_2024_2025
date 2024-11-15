@@ -39,8 +39,8 @@ public class Intake {
         // Methods:
         private static HashMap<String, Double> create_active_inverse_intake_configuration() {
             HashMap<String, Double> active_inverse_configuration = new HashMap<>();
-            active_inverse_configuration.put("intake-right", 1.0);
-            active_inverse_configuration.put("intake-left", -1.0);
+            active_inverse_configuration.put("intake-right", -1.0);
+            active_inverse_configuration.put("intake-left", 1.0);
 
             return active_inverse_configuration;
         }
@@ -48,7 +48,7 @@ public class Intake {
         private static HashMap<String, Double> create_active_eject_intake_configuration() {
             HashMap<String, Double> active_eject_configuration = new HashMap<>();
             active_eject_configuration.put("intake-right", 1.0);
-            active_eject_configuration.put("intake-left", 1.0);
+            active_eject_configuration.put("intake-left", -1.0);
 
             return active_eject_configuration;
         }
@@ -97,20 +97,28 @@ public class Intake {
         double intake_left_power = intake_state.servo_configuration.getOrDefault("intake-left", 0.0);
 
         // Logic:
-        intake_wrist_position += (gamepad_two_left_stick_y * SCALING_FACTOR);
+        intake_wrist_position += (-gamepad_two_left_stick_y * SCALING_FACTOR);
         intake_wrist_position = Math.max(0.0, Math.min(1.0, intake_wrist_position));
 
         intake_wrist.setPosition(intake_wrist_position);
 
-        if (gamepad_two_select) {
-            if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_left_trigger_down >= 0.5) {
-                set_intake_state(State.INACTIVE_STATE);
-            } else if (gamepad_two_right_trigger_down >= 0.5) {
-                set_intake_state(State.ACTIVE_INVERSE_STATE);
-            } else if (gamepad_two_left_trigger_down >= 0.5) {
-                set_intake_state(State.ACTIVE_EJECT_STATE);
-            }
+        if (gamepad_two_select && gamepad_two_right_trigger_down >= 0.5) {
+            set_intake_state(State.ACTIVE_EJECT_STATE);
+        } else if (gamepad_two_right_trigger_down >= 0.5) {
+            set_intake_state(State.ACTIVE_INVERSE_STATE);
+        } else {
+            set_intake_state(State.INACTIVE_STATE);
         }
+
+//        if (gamepad_two_select) {
+//            if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_left_trigger_down >= 0.5) {
+//                set_intake_state(State.INACTIVE_STATE);
+//            } else if (gamepad_two_right_trigger_down >= 0.5) {
+//                set_intake_state(State.ACTIVE_INVERSE_STATE);
+//            } else if (gamepad_two_left_trigger_down >= 0.5) {
+//                set_intake_state(State.ACTIVE_EJECT_STATE);
+//            }
+//        }
 
         run(intake_right, intake_right_power);
         run(intake_left, intake_left_power);
