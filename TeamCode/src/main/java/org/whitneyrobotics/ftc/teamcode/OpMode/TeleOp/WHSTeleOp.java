@@ -45,7 +45,9 @@ public class WHSTeleOp extends OpModeEx {
             gamepad2.RIGHT_TRIGGER.value(),
             gamepad2.LEFT_TRIGGER.value(),
 
-            gamepad2.SELECT.value()
+            gamepad2.SELECT.value(),
+
+            gamepad2.LEFT_STICK_Y.value()
         );
 
         // Alliances:

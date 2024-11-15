@@ -5,6 +5,7 @@ package org.whitneyrobotics.ftc.teamcode.Subsystems.Intake;
 // Imports:
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.HashMap;
 
@@ -13,6 +14,11 @@ import java.util.HashMap;
 public class Intake {
     // Variables (Declaration):
     public CRServo intake_right, intake_left;
+
+    public Servo intake_wrist;
+    public double intake_wrist_position = 0.0;
+    public static double SCALING_FACTOR = 0.02;
+
     public State intake_state = State.INACTIVE_STATE;
 
     // Enumerations:
@@ -62,6 +68,9 @@ public class Intake {
         intake_right = hardwareMap.get(CRServo.class, "intake-right");
         intake_left = hardwareMap.get(CRServo.class, "intake-left");
 
+        intake_wrist = hardwareMap.get(Servo.class, "intake-wrist");
+        intake_wrist_position = 0.0;
+
         intake_state = State.INACTIVE_STATE;
     }
 
@@ -79,19 +88,28 @@ public class Intake {
         double gamepad_two_right_trigger_down,
         double gamepad_two_left_trigger_down,
 
-        boolean gamepad_two_select
+        boolean gamepad_two_select,
+
+        double gamepad_two_left_stick_y
     ) {
         // Variables (Assignment):
-        double intake_right_power = intake_state.servo_configuration.getOrDefault("outtake-right-spinner", 0.0);
-        double intake_left_power = intake_state.servo_configuration.getOrDefault("outtake-left-spinner", 0.0);
+        double intake_right_power = intake_state.servo_configuration.getOrDefault("intake-right", 0.0);
+        double intake_left_power = intake_state.servo_configuration.getOrDefault("intake-left", 0.0);
 
         // Logic:
-        if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_left_trigger_down >= 0.5 && gamepad_two_select) {
-            set_intake_state(State.INACTIVE_STATE);
-        } else if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_select) {
-            set_intake_state(State.ACTIVE_INVERSE_STATE);
-        } else if (gamepad_two_left_trigger_down >= 0.5 && gamepad_two_select) {
-            set_intake_state(State.ACTIVE_EJECT_STATE);
+        intake_wrist_position += (gamepad_two_left_stick_y * SCALING_FACTOR);
+        intake_wrist_position = Math.max(0.0, Math.min(1.0, intake_wrist_position));
+
+        intake_wrist.setPosition(intake_wrist_position);
+
+        if (gamepad_two_select) {
+            if (gamepad_two_right_trigger_down >= 0.5 && gamepad_two_left_trigger_down >= 0.5) {
+                set_intake_state(State.INACTIVE_STATE);
+            } else if (gamepad_two_right_trigger_down >= 0.5) {
+                set_intake_state(State.ACTIVE_INVERSE_STATE);
+            } else if (gamepad_two_left_trigger_down >= 0.5) {
+                set_intake_state(State.ACTIVE_EJECT_STATE);
+            }
         }
 
         run(intake_right, intake_right_power);
