@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class Mecanum {
     // Variables (Declaration):
     DcMotor front_right, front_left, back_right, back_left;
-
+    private double turnScaling=0.5;
     // Constructor:
     public Mecanum(HardwareMap hardware_map) {
         // Variables (Definition):
@@ -56,7 +56,7 @@ public class Mecanum {
         double gamepad_left_stick_y
     ) {
         // Variables (Assignment):
-        double right_x = gamepad_right_stick_x;
+        double right_x = gamepad_right_stick_x*turnScaling;
 
         double left_x = gamepad_left_stick_x;
         double left_y = -gamepad_left_stick_y;
