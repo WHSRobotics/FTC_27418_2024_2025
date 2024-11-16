@@ -79,9 +79,6 @@ public class Intake {
         intake_state = State.INACTIVE_STATE;
 
         // Initialization:
-        intake_linear_slide_motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-
         intake_arm.setPosition(1.0);
     }
 
