@@ -42,7 +42,9 @@ public class WHSTeleOp extends OpModeEx {
 
                 gamepad2.SELECT.value(),
 
-                gamepad2.LEFT_STICK_Y.value()
+                gamepad2.RIGHT_STICK_X.value(),
+                gamepad2.LEFT_STICK_Y.value(),
+                gamepad2.LEFT_STICK_X.value()
         );
 
         // Telemetry:
@@ -58,6 +60,7 @@ public class WHSTeleOp extends OpModeEx {
         telemetryPro.addData("g2-right-trigger", gamepad2.RIGHT_TRIGGER.value());
         telemetryPro.addData("g2-left-trigger", gamepad2.LEFT_TRIGGER.value());
         telemetryPro.addData("g2-select", gamepad2.SELECT.value());
+        telemetryPro.addData("g2-right-stick-x", gamepad2.RIGHT_STICK_X.value());
         telemetryPro.addData("g2-left-stick-y", gamepad2.LEFT_STICK_Y.value());
 
         // Update:

@@ -18,7 +18,9 @@ public class Information {
 
     boolean gamepad_two_select;
 
+    double gamepad_two_right_stick_x;
     double gamepad_two_left_stick_y;
+    double gamepad_two_left_stick_x;
 
     // Constructor:
     public Information(
@@ -34,7 +36,9 @@ public class Information {
 
         boolean gamepad_two_select,
 
-        double gamepad_two_left_stick_y
+        double gamepad_two_right_stick_x,
+        double gamepad_two_left_stick_y,
+        double gamepad_two_left_stick_x
     ) {
         // Variables (Definition):
         // Mecanum:
@@ -49,6 +53,8 @@ public class Information {
 
         this.gamepad_two_select = gamepad_two_select;
 
+        this.gamepad_two_right_stick_x = gamepad_two_right_stick_x;
         this.gamepad_two_left_stick_y = gamepad_two_left_stick_y;
+        this.gamepad_two_left_stick_x = gamepad_two_left_stick_x;
     }
 }

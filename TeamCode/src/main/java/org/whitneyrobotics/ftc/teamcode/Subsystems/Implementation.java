@@ -66,7 +66,9 @@ public class Implementation {
 
             information.gamepad_two_select,
 
-            information.gamepad_two_left_stick_y
+            information.gamepad_two_right_stick_x,
+            information.gamepad_two_left_stick_y,
+            information.gamepad_two_left_stick_x
         );
 
         outtake.operate();
