@@ -24,11 +24,11 @@ public class WHSTeleOp extends OpModeEx {
         // Variables (Definition):
         implementation = Implementation.getInstance(hardwareMap);
         internals = new Internals();
-
-        // Telemetry:
-        telemetry.addLine()
-            .addData("initialization", "%s", "Robot initialized..");
-        telemetry.update();
+//
+//        // Telemetry:
+//        telemetry.addLine()
+//            .addData("initialization", "%s", "Robot initialized..");
+//        telemetry.update();
     }
 
     @Override
@@ -50,18 +50,24 @@ public class WHSTeleOp extends OpModeEx {
             gamepad2.LEFT_STICK_Y.value()
         );
 
-        // Alliances:
-        gamepad1.LEFT_STICK_DOWN.onPress(() -> {
-            telemetry.addLine()
-                .addData("previous-alliance", "%s", internals.get_alliance().identifier);
+        telemetryPro.addData("Value",gamepad2.RIGHT_TRIGGER.value());
+        telemetryPro.addData("Select",gamepad2.SELECT.value());
+        telemetryPro.update();
 
-            internals.toggle_alliance();
-
-            telemetry.addLine()
-                    .addData("current-alliance", "%s", internals.get_alliance().identifier);
-
-            telemetry.update();
-        });
+        implementation.intake.intake_left.setPower(0.5);
+        implementation.intake.intake_right.setPower(-0.5);
+    // Alliances:
+//        gamepad1.LEFT_STICK_DOWN.onPress(() -> {
+//            telemetry.addLine()
+//                .addData("previous-alliance", "%s", internals.get_alliance().identifier);
+//
+//            internals.toggle_alliance();
+//
+//            telemetry.addLine()
+//                    .addData("current-alliance", "%s", internals.get_alliance().identifier);
+//
+//            telemetry.update();
+//        });
 
         // Logic:
         implementation.update(information);
