@@ -12,12 +12,11 @@ import org.whitneyrobotics.ftc.teamcode.Subsystems.Internals;
 
 
 // Class:
-@TeleOp(name = "WHS-TeleOp", group = "27418")
 public class WHSTeleOp extends OpModeEx {
     // Variables (Declaration):
     Implementation implementation;
     Internals internals;
-
+    // frontLeft frontRight backLeft backRight
     // Initialization:
     @Override
     public void initInternal() {

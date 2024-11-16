@@ -18,15 +18,15 @@ public class Implementation {
 
     // Subsystems:
     public Mecanum mecanum_drive;
-    public Outtake outtake;
-    public Intake intake;
+//    public Outtake outtake;
+//    public Intake intake;
 
     // Constructor:
     private Implementation(HardwareMap hardware_map) {
         // Variables (Definition):
         mecanum_drive = new Mecanum(hardware_map);
-        outtake = new Outtake(hardware_map);
-        intake = new Intake(hardware_map);
+//        outtake = new Outtake(hardware_map);
+//        intake = new Intake(hardware_map);
     }
 
     private Implementation() {}
@@ -60,17 +60,17 @@ public class Implementation {
         );
 
         // Intake:
-        intake.operate(
-            information.gamepad_two_right_trigger_down,
-            information.gamepad_two_left_trigger_down,
+//        intake.operate(
+//            information.gamepad_two_right_trigger_down,
+//            information.gamepad_two_left_trigger_down,
+//
+//            information.gamepad_two_select,
+//
+//            information.gamepad_two_right_stick_x,
+//            information.gamepad_two_left_stick_y,
+//            information.gamepad_two_left_stick_x
+//        );
 
-            information.gamepad_two_select,
-
-            information.gamepad_two_right_stick_x,
-            information.gamepad_two_left_stick_y,
-            information.gamepad_two_left_stick_x
-        );
-
-        outtake.operate();
+//        outtake.operate();
     }
 }

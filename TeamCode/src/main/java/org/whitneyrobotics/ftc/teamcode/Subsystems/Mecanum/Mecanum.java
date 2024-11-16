@@ -13,8 +13,6 @@ public class Mecanum {
     DcMotor front_right, front_left, back_right, back_left;
     private double turn_scaling = 0.5;
 
-    public static double conversion_ratio = 0.25;
-
     // Constructor:
     public Mecanum(HardwareMap hardware_map) {
         // Variables (Definition):
@@ -59,9 +57,9 @@ public class Mecanum {
         double gamepad_left_stick_y
     ) {
         // Variables (Assignment):
-        double right_x = gamepad_right_stick_x * turn_scaling;
+        double right_x = -gamepad_left_stick_x * turn_scaling;
 
-        double left_x = gamepad_left_stick_x;
+        double left_x = -gamepad_right_stick_x;
         double left_y = -gamepad_left_stick_y;
 
         double greatest_common_factor = calculate_scaling_factor(
@@ -72,9 +70,9 @@ public class Mecanum {
 
         // Logic:
         front_right.setPower((left_x - left_y + right_x) / greatest_common_factor);
-        front_left.setPower((left_x + left_y + right_x) / greatest_common_factor * conversion_ratio);
+        front_left.setPower((left_x + left_y + right_x) / greatest_common_factor);
 
-        back_right.setPower((left_x - left_y - right_x) / greatest_common_factor * conversion_ratio);
-        back_left.setPower((left_x + left_y - right_x) / greatest_common_factor * conversion_ratio);
+        back_right.setPower((left_x - left_y - right_x) / greatest_common_factor);
+        back_left.setPower((left_x + left_y - right_x) / greatest_common_factor);
     }
 }
