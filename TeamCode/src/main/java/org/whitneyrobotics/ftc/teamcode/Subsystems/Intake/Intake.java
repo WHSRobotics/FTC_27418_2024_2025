@@ -81,6 +81,7 @@ public class Intake {
         // Initialization:
         intake_linear_slide_motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
         intake_arm.setPosition(1.0);
     }
 
@@ -123,8 +124,12 @@ public class Intake {
 
         intake_wrist.setPosition(intake_wrist_position);
 
-        double intake_arm_position = Math.max(0.0, Math.min(1.0, (-gamepad_two_right_stick_x + 1.0) / 2.0));
-        intake_arm.setPosition(intake_arm_position);
+        if (gamepad_two_left_stick_x != 0) {
+            double intake_arm_position = Math.max(0.0, Math.min(1.0, (-gamepad_two_right_stick_x + 1.0) / 2.0));
+            intake_arm.setPosition(intake_arm_position);
+        } else {
+            intake_arm.setPosition(intake_arm.getPosition());
+        }
 
         intake_linear_slide_motor.setPower(-gamepad_two_left_stick_x);
 

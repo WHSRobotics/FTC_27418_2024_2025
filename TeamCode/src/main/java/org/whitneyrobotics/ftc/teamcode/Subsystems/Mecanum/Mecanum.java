@@ -13,6 +13,8 @@ public class Mecanum {
     DcMotor front_right, front_left, back_right, back_left;
     private double turn_scaling = 0.5;
 
+    public static double conversion_ratio = 0.25;
+
     // Constructor:
     public Mecanum(HardwareMap hardware_map) {
         // Variables (Definition):
@@ -70,9 +72,9 @@ public class Mecanum {
 
         // Logic:
         front_right.setPower((left_x - left_y + right_x) / greatest_common_factor);
-        front_left.setPower((left_x + left_y + right_x) / greatest_common_factor);
+        front_left.setPower((left_x + left_y + right_x) / greatest_common_factor * conversion_ratio);
 
-        back_right.setPower((left_x - left_y - right_x) / greatest_common_factor);
-        back_left.setPower((left_x + left_y - right_x) / greatest_common_factor);
+        back_right.setPower((left_x - left_y - right_x) / greatest_common_factor * conversion_ratio);
+        back_left.setPower((left_x + left_y - right_x) / greatest_common_factor * conversion_ratio);
     }
 }
