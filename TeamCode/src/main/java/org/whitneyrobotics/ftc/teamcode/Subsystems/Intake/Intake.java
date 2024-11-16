@@ -102,12 +102,21 @@ public class Intake {
 
         intake_wrist.setPosition(intake_wrist_position);
 
+//        intake_left.setPower(0.5);
+//        intake_right.setPower(-0.5);
+
         if (gamepad_two_select && gamepad_two_right_trigger_down >= 0.5) {
-            set_intake_state(State.ACTIVE_EJECT_STATE);
+            //set_intake_state(State.ACTIVE_EJECT_STATE);
+            intake_left.setPower(1);
+            intake_right.setPower(1);
         } else if (gamepad_two_right_trigger_down >= 0.5) {
-            set_intake_state(State.ACTIVE_INVERSE_STATE);
+            //set_intake_state(State.ACTIVE_INVERSE_STATE);
+            intake_left.setPower((-0.5));
+            intake_right.setPower((0.5));
         } else {
-            set_intake_state(State.INACTIVE_STATE);
+            //set_intake_state(State.INACTIVE_STATE);
+            intake_left.setPower((0));
+            intake_right.setPower((0));
         }
 
 //        if (gamepad_two_select) {
@@ -120,7 +129,7 @@ public class Intake {
 //            }
 //        }
 
-        run(intake_right, intake_right_power);
-        run(intake_left, intake_left_power);
+//        run(intake_right, intake_right_power);
+//        run(intake_left, intake_left_power);
     }
 }
