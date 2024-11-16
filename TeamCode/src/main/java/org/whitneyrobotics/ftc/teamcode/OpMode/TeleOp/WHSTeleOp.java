@@ -24,50 +24,52 @@ public class WHSTeleOp extends OpModeEx {
         // Variables (Definition):
         implementation = Implementation.getInstance(hardwareMap);
         internals = new Internals();
-//
-//        // Telemetry:
-//        telemetry.addLine()
-//            .addData("initialization", "%s", "Robot initialized..");
-//        telemetry.update();
     }
 
     @Override
     public void loopInternal() {
         // Variables (Assignment):
         Information information = new Information(
-            // Mecanum (Gamepad One):
-            gamepad1.RIGHT_STICK_X.value(),
+                // Mecanum (Gamepad One):
+                gamepad1.RIGHT_STICK_X.value(),
 
-            gamepad1.LEFT_STICK_X.value(),
-            gamepad1.LEFT_STICK_Y.value(),
+                gamepad1.LEFT_STICK_X.value(),
+                gamepad1.LEFT_STICK_Y.value(),
 
-            // Intake (Gamepad Two):
-            gamepad2.RIGHT_TRIGGER.value(),
-            gamepad2.LEFT_TRIGGER.value(),
+                // Intake (Gamepad Two):
+                gamepad2.RIGHT_TRIGGER.value(),
+                gamepad2.LEFT_TRIGGER.value(),
 
-            gamepad2.SELECT.value(),
+                gamepad2.SELECT.value(),
 
-            gamepad2.LEFT_STICK_Y.value()
+                gamepad2.LEFT_STICK_Y.value()
         );
 
-        telemetryPro.addData("Value",gamepad2.RIGHT_TRIGGER.value());
-        telemetryPro.addData("Select",gamepad2.SELECT.value());
+        // Telemetry:
+        // Alliance:
+        telemetryPro.addData("current-alliance", internals.get_alliance().identifier);
+
+        // Mecanum:
+        telemetryPro.addData("g1-right-stick-x", gamepad1.RIGHT_STICK_X.value());
+        telemetryPro.addData("g1-left-stick-x", gamepad1.LEFT_STICK_X.value());
+        telemetryPro.addData("g1-left-stick-y", gamepad1.LEFT_STICK_Y.value());
+
+        // Intake:
+        telemetryPro.addData("g2-right-trigger", gamepad2.RIGHT_TRIGGER.value());
+        telemetryPro.addData("g2-left-trigger", gamepad2.LEFT_TRIGGER.value());
+        telemetryPro.addData("g2-select", gamepad2.SELECT.value());
+        telemetryPro.addData("g2-left-stick-y", gamepad2.LEFT_STICK_Y.value());
+
+        // Update:
         telemetryPro.update();
 
-        implementation.intake.intake_left.setPower(0.5);
-        implementation.intake.intake_right.setPower(-0.5);
-    // Alliances:
-//        gamepad1.LEFT_STICK_DOWN.onPress(() -> {
-//            telemetry.addLine()
-//                .addData("previous-alliance", "%s", internals.get_alliance().identifier);
-//
-//            internals.toggle_alliance();
-//
-//            telemetry.addLine()
-//                    .addData("current-alliance", "%s", internals.get_alliance().identifier);
-//
-//            telemetry.update();
-//        });
+        // Alliances:
+        gamepad1.LEFT_STICK_DOWN.onPress(() -> {
+            internals.toggle_alliance();
+
+            telemetryPro.addData("current-alliance", internals.get_alliance().identifier);
+            telemetryPro.update();
+        });
 
         // Logic:
         implementation.update(information);
