@@ -92,6 +92,7 @@ public class Intake {
 
         double gamepad_two_left_stick_y
     ) {
+        // Logic:
         if (gamepad_two_select && gamepad_two_right_trigger_down >= 0.5) {
             set_intake_state(State.ACTIVE_EJECT_STATE);
         } else if (gamepad_two_right_trigger_down >= 0.5) {
